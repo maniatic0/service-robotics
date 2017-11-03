@@ -1,0 +1,510 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tar",
+				"target_pos"
+			],
+			[
+				"fina",
+				"final_map"
+			],
+			[
+				"if",
+				"if\tIf Condition"
+			],
+			[
+				"sta",
+				"start_pos"
+			],
+			[
+				"int",
+				"interpolate"
+			],
+			[
+				"in",
+				"infinity_post"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"set",
+				"setConstants"
+			],
+			[
+				"No",
+				"no"
+			],
+			[
+				"read",
+				"reader"
+			],
+			[
+				"con",
+				"constants"
+			],
+			[
+				"In",
+				"InterpretedInstruction"
+			],
+			[
+				"vec",
+				"vector"
+			],
+			[
+				"ge",
+				"generateJointPathTrajectory"
+			],
+			[
+				"ins",
+				"instruction"
+			],
+			[
+				"st",
+				"START_POSITION"
+			],
+			[
+				"star",
+				"START_VELOCITY"
+			],
+			[
+				"fi",
+				"fileReader"
+			],
+			[
+				"deg2rad",
+				"DEG2RAD"
+			],
+			[
+				"Ve",
+				"Vector3"
+			],
+			[
+				"re",
+				"reader"
+			],
+			[
+				"cur",
+				"current_pos"
+			],
+			[
+				"sq",
+				"sqrt"
+			],
+			[
+				"de",
+				"decimal"
+			],
+			[
+				"f",
+				"fromValuesToLine"
+			],
+			[
+				"__",
+				"__repr__"
+			],
+			[
+				"def",
+				"def\tFunction"
+			],
+			[
+				"norm",
+				"normalized"
+			],
+			[
+				"nor",
+				"normalize"
+			],
+			[
+				"no",
+				"normalize"
+			],
+			[
+				"try",
+				"try\tTry/Except"
+			],
+			[
+				"vecto",
+				"Vector3"
+			],
+			[
+				"N",
+				"N"
+			],
+			[
+				"us",
+				"username"
+			],
+			[
+				"Nu",
+				"NUMERIC"
+			],
+			[
+				"RE",
+				"REFERENCES"
+			],
+			[
+				"las",
+				"lastname"
+			],
+			[
+				"b",
+				"balance"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "solver.py",
+			"settings":
+			{
+				"buffer_size": 5161,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 203.0,
+		"last_filter": "Package Control: in",
+		"selected_items":
+		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Pa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Python Solver",
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Python Solver/Pictures"
+	],
+	"file_history":
+	[
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Python Solver/Pictures/walk.png",
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Python Solver/Pictures/map.png",
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Python Solver/solver.py",
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Python Solver/solver.sublime-project",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/skybox.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/skybox.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/fallbackSize.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/fallbackSize.frag",
+		"/C/Users/Christian/Google Drive/Lund/Clases/MMKF15 Applied Robotics/Lab/Assignment_Christian_Oliveros/Assignment_Christian_Oliveros.m",
+		"/C/Users/Christian/Google Drive/Lund/Clases/MMKF15 Applied Robotics/Lab/Kinematic_Assignment_Christian_Oliveros.m",
+		"/C/Users/Christian/Desktop/wifi_start.bat",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/vector.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/constants.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/main.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/trajectoryGeneration.py",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/wave.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/wave.vert",
+		"/C/Users/Christian/Downloads/Telegram Desktop/mierdon",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/phong.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/texture_phong.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/res/scenes/T-50.obj",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/res/scenes/AIM120D.blend.obj",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/res/scenes/mig21C.obj",
+		"/C/Users/Christian/Downloads/Telegram Desktop/plane (3).cpp",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/res/scenes/T-50.mtl",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/res/scenes/t50_pak-fa/T-50.obj",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/res/scenes/t50_pak-fa/T-50.mtl",
+		"/C/Users/Christian/Downloads/Telegram Desktop/plane (2).cpp",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/texture_phon.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/phong.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/default.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/default.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/res/scenes/AIM120D.obj",
+		"/C/Users/Christian/Downloads/Telegram Desktop/phong (2).frag",
+		"/C/Users/Christian/Downloads/Telegram Desktop/phong (2).vert",
+		"/C/Users/Christian/Downloads/Telegram Desktop/phong.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/src/EDAF80/parametric_shapes.cpp",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/src/EDAF80/assignment4.cpp",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/src/EDAF80/EDAF80_Assignment5.vcxproj.filters",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/src/EDAF80/CMakeLists.txt",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/src/EDAF80/EDAF80_Assignment5.vcxproj",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/src/EDAF80/cmake_install.cmake",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/src/EDAF80/basicNode.h",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/fileReader.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/decimalMath.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/instruction.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/__init__.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Motors/constantsMotor.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Motors/moveMotors.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/Test/correct_test.txt",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/Test/bad_test.txt",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/Test/correct_test.text",
+		"/C/Users/Christian/Google Drive/Maratones/GANNHAT/gannhat2.cpp",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/vector.py",
+		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/rasp-proy.sublime-project",
+		"/C/Users/Christian/Google Drive/Libros/Procesando/vector.py",
+		"/C/Users/Christian/Google Drive/Libros/Procesando/rasp-proy.sublime-project",
+		"/C/Users/Christian/Downloads/CollisionAvoidance.cs",
+		"/C/Users/Christian/Downloads/ObstacleAvoidance.cs",
+		"/C/Users/Christian/Downloads/CentralWithShortWhiskers.cs",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/blinnPhong.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/blinnPhong.frag",
+		"/C/Users/Christian/Downloads/Telegram Desktop/assignment3 (2).cpp",
+		"/C/Users/Christian/Downloads/Telegram Desktop/assignment3.cpp",
+		"/C/Users/Christian/Downloads/Telegram Desktop/phong.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/tangent.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/tangent.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/skybox.vet.vs",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/texcoord.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/texcoord.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/diffuse.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/diffuse.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/fullscreen.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/fullscreen.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/fallback.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/fallback.vert",
+		"/C/Users/Christian/SkyDrive/Documents/Juego/CI6450 Mondongo Inc/Assets/Scripts/Camara/cameraMovement.cs",
+		"/C/Users/Christian/Documents/cocos2d-x-3.15.1/setup.py",
+		"/C/Users/Christian/Documents/Lund/Project/Build/log.txt",
+		"/C/Users/Christian/Documents/cocos2d-x-3.15.1/download-deps.py",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/res/scenes/sphere.obj",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/CMakeLists.txt",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/0001-fix-compiling-problems-under-vs2017-3.patch",
+		"/C/Users/Christian/Documents/Lund/Project/Build/CMakeCache.txt",
+		"/C/Users/Christian/Google Drive/Lund/Clases/EDAF80 Computer Graphics/Project/Build/messages.txt",
+		"/C/Users/Christian/Google Drive/Lund/Clases/EDAF80 Computer Graphics/Project/Build/errors.txt",
+		"/C/Users/Christian/Google Drive/Lund/Clases/EDAF80 Computer Graphics/Project/Build/error.txt",
+		"/C/Users/Christian/Google Drive/Lund/Clases/EDAF80 Computer Graphics/Project/Build/cmake_install.cmake",
+		"/C/Users/Christian/Google Drive/Maratones/DISTANCE/DISTANCE.cpp",
+		"/C/Users/Christian/Google Drive/Lund/Clases/EDAF80 Computer Graphics/Project/CG_Labs/CMakeLists.txt",
+		"/C/Users/Christian/SkyDrive/Documents/Juego/Juego ANAR/Library/UnityAssemblies/UnityEngine.dll",
+		"/C/Users/Christian/Google Drive/CEIC/Tecnología/ceicsv.sql",
+		"/C/Users/Christian/Google Drive/CEIC/Tecnología/base.sql",
+		"/D/config.bin",
+		"/C/Users/Christian/Google Drive/USB/Bases de Datos/Base de Datos/Lab/Proyecto Fase 2/creaBGV.sql",
+		"/C/Users/Christian/SkyDrive/Documents/Juego/Juego-Jugado/README.md",
+		"/C/Users/Christian/SkyDrive/Documents/Juego/Juego-Jugado/.gitignore"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"TBN",
+			"mtl",
+			"\\",
+			"mtl",
+			"pilot",
+			"m.",
+			"c.",
+			"vec.",
+			"ins.",
+			"ins",
+			"v.",
+			"reader",
+			"generatePathTrajectory",
+			"ins",
+			"prog",
+			"pattern"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"TNB",
+			"/",
+			"",
+			"generateCartesianPathTrajectory",
+			"_prog",
+			"_pattern"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "solver.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5161,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5079,
+								5079
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2534.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 155.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "solver.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
