@@ -4,7 +4,9 @@
 #define STOP 90 
 #define LEFT_BACKWARD 180 
 #define RIGHT_FORWARD 180 
-#define RIGHT_BACKWARD 0 
+#define RIGHT_BACKWARD 0
+#define LEFT_TURN 110 
+#define RIGHT_TURN 110 
 #define MOTORS 2
 #define LEFT_MOTOR 0
 #define RIGHT_MOTOR 1
@@ -62,6 +64,7 @@ bool button_state = false;
 #define RIGHT_WEIRD 8
 #define TARGET 9
 #define ENTRANCE 10
+#define TURN 11
 int dir = 0;
 
 bool on_intersection = false;
@@ -71,7 +74,6 @@ bool top_corner = false; // If we are on top of a top_corner afer hitting the ri
 bool white_corner = false; // for cross intersections
 bool black_corner = false; // for cross intersections
 bool second_white_corner = false; // for cross intersections
-
 
 
 float ReadLineSensor(int i){
@@ -317,7 +319,7 @@ void RightWeird(){
     }
     else
     {
-        LeftCorner();
+        RightCorner();
     }
     
     if (!OnLine(LEFT_LEFT_LINE_SENSOR))
@@ -334,6 +336,28 @@ void RightWeird(){
         }
     }
 }
+//we want to turn 180 degrees for our left
+void Turn() {
+    
+    line_signal[LEFT_MOTOR] = LEFT_TURN;
+    line_signal[RIGHT_MOTOR] = RIGHT_TURN;
+    
+    if (OnLine(LEFT_LEFT_LINE_SENSOR))
+    {
+        if (!black_corner)
+        {
+            black_corner = true;
+        }
+    }
+    
+    if (OnLine(RIGHT_LINE_SENSOR) && black_corner && entering_intersection && !exiting_intersection)
+    {
+        exiting_intersection = true;
+        entering_intersection = false;
+        black_corner = false;
+    }
+
+} 
 
 void LineControl() {
     on_intersection = OnIntersection();
@@ -383,6 +407,9 @@ void LineControl() {
           break;
         case RIGHT_WEIRD:
           RightWeird();
+          break;
+        case TURN:
+          Turn();
           break;
         default:
           break;

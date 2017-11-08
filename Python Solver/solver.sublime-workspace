@@ -4,24 +4,68 @@
 		"selected_items":
 		[
 			[
+				"LEf",
+				"LeftWeird"
+			],
+			[
+				"LEFT",
+				"LEFT_WEIRD"
+			],
+			[
+				"Right",
+				"RightCorner"
+			],
+			[
+				"Lef",
+				"LeftCorner"
+			],
+			[
+				"whi",
+				"white_corner"
+			],
+			[
+				"LEF",
+				"LEFT_CORNER"
+			],
+			[
+				"LE",
+				"LEFT_LINE_SENSOR"
+			],
+			[
+				"RIGHT",
+				"RIGHT_CORNER"
+			],
+			[
+				"en",
+				"entering_intersection"
+			],
+			[
+				"On",
+				"OnIntersection"
+			],
+			[
+				"RIGHT_T",
+				"RIGHT_RIGHT_LINE_SENSOR"
+			],
+			[
+				"mo",
+				"MOTORS"
+			],
+			[
+				"fo",
+				"FORWARD"
+			],
+			[
+				"pri",
+				"println"
+			],
+			[
 				"SP",
 				"LEFT_SPEAKER"
 			],
 			[
 				"SPE",
 				"SPEAKER_THRESHOLD"
-			],
-			[
-				"LE",
-				"LEFT_MOTOR"
-			],
-			[
-				"LEF",
-				"LEFT_FORWARD"
-			],
-			[
-				"RIGHT",
-				"RIGHT_FORWARD"
 			],
 			[
 				"sw",
@@ -197,10 +241,13 @@
 			}
 		},
 		{
+			"contents": "#include <Servo.h>\n\n#define LEFT_FORWARD 0 \n#define STOP 90 \n#define LEFT_BACKWARD 180 \n#define RIGHT_FORWARD 180 \n#define RIGHT_BACKWARD 0 \n#define MOTORS 2\n#define LEFT_MOTOR 0\n#define RIGHT_MOTOR 1\n\n\nServo left_servo;  // create servo object to control a servo\nServo right_servo;  // create servo object to control a servo\nint servoPin[] = {9, 10};\nfloat motor_signal[MOTORS] = {0,0};\n\n// twelve servo objects can be created on most boards\n\nint outSignal = 90;    // variable to store the servo position\nint inSignal = 90;\nfloat test;\nint readPin = 0;\n\n\n#define LINE_THRESHOLD 400\n#define ANALOG_MAX 1023\n#define LINE_SENSORS 4\n#define LEFT_LEFT_LINE_SENSOR 0\n#define LEFT_LINE_SENSOR 1\n#define RIGHT_LINE_SENSOR 2\n#define RIGHT_RIGHT_LINE_SENSOR 3\n#define LINE_STOPING_CONSTANT 8/9\n\nint line_read_pin[LINE_SENSORS] = {0, 1, 2, 3};\nfloat line_reading[LINE_SENSORS] = {0, 0, 0, 0};\nfloat line_signal[MOTORS] = {0, 0};\n\n\nint trigPin[] = {1,3,5};\nint echoPin[] = {2,4,6};\nlong distance[] = {0,0,0};\n#define MAGIC_SPEAKER_CONSTANT 29.1\n#define SPEAKER_AMOUNT 3\n#define LEFT_SPEAKER 0\n#define FRONT_SPEAKER 1\n#define RIGHT_SPEAKER 2\n#define SPEAKER_THRESHOLD 30\n\n#define BUTTON_PIN 7\n\nbool button_state = false;\n\n#define FORWARD 0\n#define LEFT_CORNER 1\n#define RIGHT_CORNER 2\n#define LEFT_CROSS 3\n#define RIGHT_CROSS 4\n#define LEFT_T 5\n#define RIGHT_T 6\n#define LEFT_WEIRD 7\n#define RIGHT_WEIRD 8\n#define TARGET 9\n#define ENTRANCE 10\nint dir = 0;\n\nbool on_intersection = false;\nbool entering_intersection = false;\nbool exiting_intersection = false;\nbool top_corner = false; // If we are on top of a top_corner afer hitting the right right sensor\nbool white_corner = false; // for cross intersections\nbool black_corner = false; // for cross intersections\nbool second_white_corner = false; // for cross intersections\n\n\n\nfloat ReadLineSensor(int i){\n    return float(analogRead(line_read_pin[i]) - LINE_THRESHOLD) / float(ANALOG_MAX);\n}\n\nvoid ReadLineSensors() {\n    for(int i=0; i<LINE_SENSORS; i++){\n        line_reading[i] = ReadLineSensor(i);\n    }\n}\n\nbool OnLine(int i) {\n    return line_reading[i] >= 0;\n}\n\nbool OnIntersection(){\n    return OnLine(LEFT_LEFT_LINE_SENSOR) || OnLine(RIGHT_RIGHT_LINE_SENSOR);\n}\n\n\nvoid NormalLineControl() {\n    if (OnLine(LEFT_LINE_SENSOR))\n    {\n        line_signal[LEFT_MOTOR] = STOP * LINE_STOPING_CONSTANT;\n    }\n    else\n    {\n        line_signal[LEFT_MOTOR] = LEFT_FORWARD;\n    }\n\n    if (OnLine(RIGHT_LINE_SENSOR))\n    {\n        line_signal[RIGHT_MOTOR] = STOP  * (2 - LINE_STOPING_CONSTANT) ;\n    }\n    else\n    {\n        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;\n    }\n}\n\nvoid Forward(){\n    line_signal[LEFT_MOTOR] = LEFT_FORWARD;\n    line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;\n\n    //After an intersection mark as a normal path again\n    if (!on_intersection && entering_intersection && !exiting_intersection)\n    {\n        exiting_intersection = true;\n        entering_intersection = false;\n    }\n}\n\nvoid LeftCorner(){\n    if (!top_corner)\n    {\n        line_signal[LEFT_MOTOR] = STOP;\n        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;\n    }\n    else\n    {\n        line_signal[LEFT_MOTOR] = LEFT_FORWARD;\n        line_signal[RIGHT_MOTOR] = STOP;\n    }\n    \n    //After an intersection mark as a normal path again\n    if (OnLine(RIGHT_RIGHT_LINE_SENSOR) && !top_corner)\n    {\n        top_corner = true;\n    }\n\n    if (OnLine(LEFT_LINE_SENSOR) && top_corner && entering_intersection && !exiting_intersection)\n    {\n        exiting_intersection = true;\n        entering_intersection = false;\n        top_corner = false;\n    }\n}\n\nvoid RightCorner(){\n    if (!top_corner)\n    {\n        line_signal[LEFT_MOTOR] = LEFT_FORWARD;\n        line_signal[RIGHT_MOTOR] = STOP;\n    }\n    else\n    {\n        line_signal[LEFT_MOTOR] = STOP;\n        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;\n    }\n    \n    //After an intersection mark as a normal path again\n    if (OnLine(LEFT_LEFT_LINE_SENSOR) && !top_corner)\n    {\n        top_corner = true;\n    }\n\n    if (OnLine(RIGHT_LINE_SENSOR) && top_corner && entering_intersection && !exiting_intersection)\n    {\n        exiting_intersection = true;\n        entering_intersection = false;\n        top_corner = false;\n    }\n}\n\n\nvoid LeftCross(){\n    // We haven't reached half of the turn\n    if (!(white_corner && black_corner && second_white_corner))\n    {\n        line_signal[LEFT_MOTOR] = STOP;\n        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;\n    }\n    else\n    {\n        LeftCorner();\n    }\n    \n    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))\n    {\n        if (!white_corner)\n        {\n            white_corner = true;\n        }\n        else if(!second_white_corner && black_corner) {\n            second_white_corner = true;\n        }\n    }\n    else {\n        if (!black_corner && white_corner)\n        {\n            black_corner = true;\n        }\n    }\n}\n\nvoid RightCross(){\n    // We haven't reached half of the turn\n    if (!(white_corner && black_corner && second_white_corner))\n    {\n        line_signal[LEFT_MOTOR] = LEFT_FORWARD;\n        line_signal[RIGHT_MOTOR] = STOP;\n    }\n    else\n    {\n        RightCorner();\n    }\n    \n    if (!OnLine(LEFT_LEFT_LINE_SENSOR))\n    {\n        if (!white_corner)\n        {\n            white_corner = true;\n        }\n        else if(!second_white_corner && black_corner) {\n            second_white_corner = true;\n        }\n    }\n    else {\n        if (!black_corner && white_corner)\n        {\n            black_corner = true;\n        }\n    }\n}\n\n\nvoid LeftT(){\n    // We haven't reached half of the turn\n    if (!white_corner)\n    {\n        line_signal[LEFT_MOTOR] = STOP;\n        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;\n    }\n    else\n    {\n        LeftCorner();\n    }\n    \n    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))\n    {\n        if (!white_corner)\n        {\n            white_corner = true;\n        }\n    }\n}\n\nvoid RightT(){\n    // We haven't reached half of the turn\n    if (!white_corner)\n    {\n        line_signal[LEFT_MOTOR] = LEFT_FORWARD;\n        line_signal[RIGHT_MOTOR] = STOP;\n    }\n    else\n    {\n        RightCorner();\n    }\n    \n    if (!OnLine(LEFT_LEFT_LINE_SENSOR))\n    {\n        if (!white_corner)\n        {\n            white_corner = true;\n        }\n    }\n}\n\nvoid LeftWeird(){\n    // We haven't reached half of the turn\n    if (!(white_corner && black_corner))\n    {\n        line_signal[LEFT_MOTOR] = STOP;\n        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;\n    }\n    else\n    {\n        LeftCorner();\n    }\n    \n    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))\n    {\n        if (!white_corner && black_corner)\n        {\n            white_corner = true;\n        }\n    }\n    else{\n        if (!black_corner)\n        {\n            black_corner = true;\n        }\n    }\n}\n\nvoid RightWeird(){\n    // We haven't reached half of the turn\n    if (!(white_corner && black_corner))\n    {\n        line_signal[LEFT_MOTOR] = LEFT_FORWARD;\n        line_signal[RIGHT_MOTOR] = STOP;\n    }\n    else\n    {\n        RightCorner();\n    }\n    \n    if (!OnLine(LEFT_LEFT_LINE_SENSOR))\n    {\n        if (!white_corner && black_corner)\n        {\n            white_corner = true;\n        }\n    }\n    else {\n        if (!black_corner)\n        {\n            black_corner = true;\n        }\n    }\n}\n\nvoid LineControl() {\n    on_intersection = OnIntersection();\n    //End of the intersection\n    if (!on_intersection && !(entering_intersection && !exiting_intersection))\n    {\n        NormalLineControl();\n        return;\n    }\n\n    //If we do not want to make the NormalLineControl and we are still on the Intersection. Just mark the entrance on the Intersection\n    if (!entering_intersection)\n    {\n        entering_intersection = true;\n        exiting_intersection = false;\n        top_corner = false;\n        white_corner = false;\n        black_corner = false;\n        second_white_corner = false;\n    }\n\n\n    switch (dir) {\n        case FORWARD:\n          Forward();\n          break;\n        case LEFT_CORNER:\n          LeftCorner();\n          break;\n        case RIGHT_CORNER:\n          RightCorner();\n          break;\n        case LEFT_CROSS:\n          LeftCross();\n          break;\n        case RIGHT_CROSS:\n          RightCross();\n          break;\n        case LEFT_T:\n          LeftT();\n          break;\n        case RIGHT_T:\n          RightT();\n          break;\n        case LEFT_WEIRD:\n          LeftWeird();\n          break;\n        case RIGHT_WEIRD:\n          RightWeird();\n          break;\n        default:\n          break;\n    }\n}\n\n\nvoid ReadSpeakers(){\n    for(int i=0; i<SPEAKER_AMOUNT; i++){\n        digitalWrite(trigPin[i], LOW);  // Added this line\n        delayMicroseconds(2); // Added this line\n        digitalWrite(trigPin[i], HIGH);\n        delayMicroseconds(10); // Added this line\n        digitalWrite(trigPin[i], LOW);\n        distance[i] = (pulseIn(echoPin[i], HIGH)/2) / MAGIC_SPEAKER_CONSTANT;\n    }\n}\n\nbool OutOfRange(int i) {\n    return distance[i] >= SPEAKER_THRESHOLD || distance[i] <= 0;\n}\n\n\nvoid MotorControl(){\n    ReadLineSensors();\n    LineControl();\n    ReadSpeakers();\n\n\n    motor_signal[LEFT_MOTOR] = line_signal[LEFT_MOTOR];\n    motor_signal[RIGHT_MOTOR] = line_signal[RIGHT_MOTOR];\n\n    if (OutOfRange(LEFT_SPEAKER) && OutOfRange(RIGHT_SPEAKER))\n    {\n        motor_signal[LEFT_MOTOR] = STOP;\n        motor_signal[RIGHT_MOTOR] = STOP;\n    }\n    else if (!OutOfRange(FRONT_SPEAKER)) \n    {\n        motor_signal[LEFT_MOTOR] = STOP;\n        motor_signal[RIGHT_MOTOR] = STOP;\n    }\n\n\n    left_servo.write(motor_signal[LEFT_MOTOR]);\n    right_servo.write(motor_signal[RIGHT_MOTOR]);\n}\n\nvoid Button(){\n    if (digitalRead(BUTTON_PIN) == HIGH)\n    {\n        button_state = !button_state;\n    }\n}\n\nvoid setup() {\n    left_servo.attach(servoPin[LEFT_MOTOR]);\n    right_servo.attach(servoPin[RIGHT_MOTOR]);\n    left_servo.write(STOP);\n    right_servo.write(STOP);\n\n    for(int i=0; i<LINE_SENSORS; i++){\n        pinMode(line_read_pin[i],INPUT);\n    }\n\n    for(int i=0; i<SPEAKER_AMOUNT; i++){\n        pinMode(trigPin[i], OUTPUT);\n        pinMode(echoPin[i], INPUT);\n    }\n\n    pinMode(BUTTON_PIN, INPUT);\n\n    Serial.begin(9600);              //  setup serial\n}\n\nvoid loop() {\n    while(!button_state){\n        Button();\n        if (button_state)\n        {\n            Serial.println(\"Started\");\n            delay(200);\n            break;\n        }\n    }\n    while(button_state){\n        Button();\n        if (!button_state)\n        {\n            Serial.println(\"Stopped\");\n            left_servo.write(STOP);\n            right_servo.write(STOP);\n            delay(200);\n            break;\n        }\n        MotorControl();\n        Serial.print(\"Left motor:\");\n        Serial.println(motor_signal[LEFT_MOTOR]);\n        Serial.print(\"Right motor:\");\n        Serial.println(motor_signal[RIGHT_MOTOR]);\n        delay(100); \n    } \n}\n",
 			"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/sketch_nov07a.ino",
+			"file_size": 10758,
+			"file_write_time": 131545492981145360,
 			"settings":
 			{
-				"buffer_size": 3638,
+				"buffer_size": 10759,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -392,9 +439,11 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"second_black_corner",
+			"corner",
 			"onLine",
 			"readLineSensor",
 			"readLineSensors",
@@ -422,6 +471,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"second_white_corner",
+			"top_corner",
 			"OnLine",
 			"ReadLineSensor",
 			"ReadLineSensors",
@@ -435,7 +486,7 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": false,
+		"whole_word": true,
 		"wrap": true
 	},
 	"groups":
@@ -466,10 +517,10 @@
 							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1995.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -478,15 +529,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3638,
+						"buffer_size": 10759,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2796,
-								2796
+								6924,
+								6924
 							]
 						],
 						"settings":
@@ -496,7 +547,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1215.0,
+						"translation.y": 4366.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -529,7 +580,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
