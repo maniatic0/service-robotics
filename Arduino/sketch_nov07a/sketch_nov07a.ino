@@ -24,24 +24,29 @@ int last_button_state = 0;
 #define TARGET 9
 #define ENTRANCE 10
 #define TURN 11
+#define FULL_STOP 12
 int dir = RIGHT_CROSS;
 #define PATH_LENGTH 13
 
+/*int path[PATH_LENGTH] = {LEFT_CORNER, LEFT_CROSS, FULL_STOP};*/
+/*
+int path[PATH_LENGTH] = {LEFT_CORNER, RIGHT_CORNER, FULL_STOP};*/
+
+/*
 int path[PATH_LENGTH] = {LEFT_CORNER, RIGHT_CORNER,
     RIGHT_T,LEFT_CORNER,
     RIGHT_T,RIGHT_CORNER,
     RIGHT_CORNER,LEFT_CORNER,
     LEFT_CORNER,LEFT_CORNER,
     LEFT_CORNER,RIGHT_CORNER,
-    RIGHT_CORNER};
-/*
+    RIGHT_CORNER, FULL_STOP};*/
+
 int path[PATH_LENGTH] = {LEFT_CORNER,RIGHT_CORNER,
     LEFT_T,RIGHT_CROSS,
     RIGHT_CORNER,RIGHT_CORNER,
     LEFT_CORNER,LEFT_CORNER,
     FORWARD,RIGHT_CORNER,
-    LEFT_CORNER,LEFT_CORNER};
-    */
+    LEFT_CORNER,LEFT_CORNER,FULL_STOP};
 
 int path_pos = 0;
 
@@ -98,19 +103,139 @@ void Forward(){
     }
 }
 
+void LeftS(){
+#ifdef DEBUG
+        Serial.println("LeftS");
+#endif
+
+    if((OnLine(RIGHT_RIGHT_LINE_SENSOR) || OnLine(LEFT_LEFT_LINE_SENSOR)) && !white_corner) {
+      line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+      line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+    else {
+      if(!OnLine(LEFT_LEFT_LINE_SENSOR) && !white_corner) white_corner = true;
+      
+      line_signal[LEFT_MOTOR] = LEFT_BACKWARD;
+      line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+
+    //After an intersection mark as a normal path again
+    if (OnLine(RIGHT_LINE_SENSOR) && white_corner && entering_intersection && !exiting_intersection)
+    {
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+        white_corner = false;
+        exiting_intersection = true;
+        entering_intersection = false;
+        updatePath();
+    }
+}
+
+void RightS(){
+#ifdef DEBUG
+        Serial.println("RightS");
+#endif
+
+    if((OnLine(RIGHT_RIGHT_LINE_SENSOR) || OnLine(LEFT_LEFT_LINE_SENSOR)) && !white_corner) {
+      line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+      line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+    else {
+      if(!OnLine(RIGHT_RIGHT_LINE_SENSOR) && !white_corner) white_corner = true;
+      
+      line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+      line_signal[RIGHT_MOTOR] = RIGHT_BACKWARD;
+    }
+
+    //After an intersection mark as a normal path again
+    if (OnLine(LEFT_LINE_SENSOR) && white_corner && entering_intersection && !exiting_intersection)
+    {
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+        white_corner = false;
+        exiting_intersection = true;
+        entering_intersection = false;
+        updatePath();
+    }
+}
+
+void LeftSCross(){
+#ifdef DEBUG
+        Serial.println("LeftSCross");
+#endif
+
+    if((OnLine(RIGHT_RIGHT_LINE_SENSOR) || OnLine(LEFT_LEFT_LINE_SENSOR)) && !white_corner) {
+      line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+      line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+    else {
+      if(!OnLine(LEFT_LEFT_LINE_SENSOR) && !white_corner) white_corner = true;
+      line_signal[LEFT_MOTOR] = LEFT_BACKWARD;
+      line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+    
+    //After an intersection mark as a normal path again
+    if(OnLine(RIGHT_LINE_SENSOR) && white_corner && !black_corner) black_corner = true;
+    else if(!OnLine(RIGHT_LINE_SENSOR) && white_corner && black_corner && !second_white_corner) second_white_corner = true;
+    else if (OnLine(RIGHT_LINE_SENSOR) && white_corner && black_corner && second_white_corner && entering_intersection && !exiting_intersection)
+    {
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+        white_corner = false;
+        black_corner = false;
+        second_white_corner = false;
+        exiting_intersection = true;
+        entering_intersection = false;
+        updatePath();
+    }
+}
+
+
+void RightSCross(){
+#ifdef DEBUG
+        Serial.println("LeftSCross");
+#endif
+
+    if((OnLine(RIGHT_RIGHT_LINE_SENSOR) || OnLine(LEFT_LEFT_LINE_SENSOR)) && !white_corner) {
+      line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+      line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+    else {
+      if(!OnLine(RIGHT_RIGHT_LINE_SENSOR) && !white_corner) white_corner = true;
+      line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+      line_signal[RIGHT_MOTOR] = RIGHT_BACKWARD;
+    }
+    
+    //After an intersection mark as a normal path again
+    if(OnLine(LEFT_LINE_SENSOR) && white_corner && !black_corner) black_corner = true;
+    else if(!OnLine(LEFT_LINE_SENSOR) && white_corner && black_corner && !second_white_corner) second_white_corner = true;
+    else if (OnLine(LEFT_LINE_SENSOR) && white_corner && black_corner && second_white_corner && entering_intersection && !exiting_intersection)
+    {
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+        white_corner = false;
+        black_corner = false;
+        second_white_corner = false;
+        exiting_intersection = true;
+        entering_intersection = false;
+        updatePath();
+    }
+}
+
+
 void LeftCorner(){
 #ifdef DEBUG
         Serial.println("Left Corner");
 #endif
     if (!top_corner)
     {
-        line_signal[LEFT_MOTOR] = STOP * 10/9;
-        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD* 7/9;
+        line_signal[LEFT_MOTOR] = 100;
+        line_signal[RIGHT_MOTOR] = 110;
     }
     else
     {
-        line_signal[LEFT_MOTOR] = LEFT_FORWARD + 50;
-        line_signal[RIGHT_MOTOR] = STOP;
+        line_signal[LEFT_MOTOR] = 70;
+        line_signal[RIGHT_MOTOR] = 90;
     }
     
     //After an intersection mark as a normal path again
@@ -134,13 +259,13 @@ void RightCorner(){
 #endif
     if (!top_corner)
     {
-        line_signal[LEFT_MOTOR] = LEFT_FORWARD + 40;
-        line_signal[RIGHT_MOTOR] = STOP  * 8/9;
+        line_signal[LEFT_MOTOR] = 60;
+        line_signal[RIGHT_MOTOR] = 82;
     }
     else
     {
-        line_signal[LEFT_MOTOR] = STOP;
-        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD - 50;
+        line_signal[LEFT_MOTOR] = 90;
+        line_signal[RIGHT_MOTOR] = 110;
   
     }
     
@@ -258,7 +383,7 @@ void RightT(){
     // We haven't reached half of the turn
     if (!white_corner)
     {
-        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD+22;
         line_signal[RIGHT_MOTOR] = STOP;
     }
     else
@@ -390,31 +515,35 @@ void LineControl() {
           Forward();
           break;
         case LEFT_CORNER:
-          LeftCorner();
+          LeftS();
           break;
         case RIGHT_CORNER:
-          RightCorner();
+          RightS();
           break;
         case LEFT_CROSS:
-          LeftCross();
+          LeftSCross();
           break;
         case RIGHT_CROSS:
-          RightCross();
+          RightSCross();
           break;
         case LEFT_T:
-          LeftT();
+          LeftS();
           break;
         case RIGHT_T:
-          RightT();
+          RightS();
           break;
         case LEFT_WEIRD:
-          LeftWeird();
+          LeftSCross();
           break;
         case RIGHT_WEIRD:
-          RightWeird();
+          RightSCross();
           break;
         case TURN:
           Turn();
+          break;
+        case FULL_STOP:
+          MotorStop();
+          updatePath();
           break;
         default:
           break;
