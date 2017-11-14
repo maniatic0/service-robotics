@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "C:\\Users\\Christian\\Desktop\\Service Robotics\\service-robotics\\Arduino"
 		}
 	]
 }
