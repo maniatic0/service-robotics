@@ -1,26 +1,26 @@
 #include "lines.h"
 #include "motors.h"
 #include "leds.h"
+#include "button.h"
+#include "speakers.h"
 
 
 #define DEBUG
 
-#define BUTTON_PIN 7
-
-bool button_state = false;
-int current_button_state = 0;
-int last_button_state = 0;
-
+#define LEFTS 1
+#define RIGHTS 2
+#define LEFTS_CROSS 3
+#define RIGHTS_CROSS 4
 
 #define FORWARD 0
-#define LEFT_CORNER 1
-#define RIGHT_CORNER 2
-#define LEFT_CROSS 3
-#define RIGHT_CROSS 4
-#define LEFT_T 5
-#define RIGHT_T 6
-#define LEFT_WEIRD 7
-#define RIGHT_WEIRD 8
+#define LEFT_CORNER (LEFTS)
+#define RIGHT_CORNER (RIGHTS)
+#define LEFT_T (LEFTS)
+#define RIGHT_T (RIGHTS)
+#define LEFT_WEIRD (LEFTS_CROSS)
+#define RIGHT_WEIRD (RIGHTS_CROSS)
+#define LEFT_CROSS (LEFTS_CROSS)
+#define RIGHT_CROSS (RIGHTS_CROSS)
 #define TARGET 9
 #define ENTRANCE 10
 #define TURN 11
@@ -57,6 +57,8 @@ bool top_corner = false; // If we are on top of a top_corner afer hitting the ri
 bool white_corner = false; // for cross intersections
 bool black_corner = false; // for cross intersections
 bool second_white_corner = false; // for cross intersections
+
+int claws = 4; // cm
 
 void updatePath() {
     path_pos++;
@@ -193,7 +195,7 @@ void LeftSCross(){
 
 void RightSCross(){
 #ifdef DEBUG
-        Serial.println("LeftSCross");
+        Serial.println("RightSCross");
 #endif
 
     if((OnLine(RIGHT_RIGHT_LINE_SENSOR) || OnLine(LEFT_LEFT_LINE_SENSOR)) && !white_corner) {
@@ -222,267 +224,56 @@ void RightSCross(){
     }
 }
 
-
-void LeftCorner(){
-#ifdef DEBUG
-        Serial.println("Left Corner");
-#endif
-    if (!top_corner)
-    {
-        line_signal[LEFT_MOTOR] = 100;
-        line_signal[RIGHT_MOTOR] = 110;
-    }
-    else
-    {
-        line_signal[LEFT_MOTOR] = 70;
-        line_signal[RIGHT_MOTOR] = 90;
-    }
-    
-    //After an intersection mark as a normal path again
-    if (OnLine(RIGHT_RIGHT_LINE_SENSOR) && !top_corner)
-    {
-        top_corner = true;
-    }
-
-    if (OnLine(LEFT_LINE_SENSOR) && top_corner && entering_intersection && !exiting_intersection)
-    {
-        exiting_intersection = true;
-        entering_intersection = false;
-        top_corner = false;
-        updatePath();
-    }
-}
-
-void RightCorner(){
-#ifdef DEBUG
-        Serial.println("Right Corner");
-#endif
-    if (!top_corner)
-    {
-        line_signal[LEFT_MOTOR] = 60;
-        line_signal[RIGHT_MOTOR] = 82;
-    }
-    else
-    {
-        line_signal[LEFT_MOTOR] = 90;
-        line_signal[RIGHT_MOTOR] = 110;
-  
-    }
-    
-    //After an intersection mark as a normal path again
-    if (OnLine(LEFT_LEFT_LINE_SENSOR) && !top_corner)
-    {
-        top_corner = true;
-    }
-
-    if (OnLine(RIGHT_LINE_SENSOR) && top_corner && entering_intersection && !exiting_intersection)
-    {
-        exiting_intersection = true;
-        entering_intersection = false;
-        top_corner = false;
-        updatePath();
-    }
-}
-
-
-void LeftCross(){
-#ifdef DEBUG
-        Serial.println("Left Cross");
-#endif
-    // We haven't reached half of the turn
-    if (!(white_corner && black_corner && second_white_corner))
-    {
-        line_signal[LEFT_MOTOR] = STOP;
-        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
-    }
-    else
-    {
-        LeftCorner();
-    }
-    
-    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))
-    {
-        if (!white_corner)
-        {
-            white_corner = true;
-        }
-        else if(!second_white_corner && black_corner) {
-            second_white_corner = true;
-        }
-    }
-    else {
-        if (!black_corner && white_corner)
-        {
-            black_corner = true;
-        }
-    }
-}
-
-void RightCross(){
-#ifdef DEBUG
-        Serial.println("Right Cross");
-#endif
-    // We haven't reached half of the turn
-    if (!(white_corner && black_corner && second_white_corner))
-    {
-        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
-        line_signal[RIGHT_MOTOR] = STOP;
-    }
-    else
-    {
-        RightCorner();
-    }
-    
-    if (!OnLine(LEFT_LEFT_LINE_SENSOR))
-    {
-        if (!white_corner)
-        {
-            white_corner = true;
-        }
-        else if(!second_white_corner && black_corner) {
-            second_white_corner = true;
-        }
-    }
-    else {
-        if (!black_corner && white_corner)
-        {
-            black_corner = true;
-        }
-    }
-}
-
-
-void LeftT(){
-#ifdef DEBUG
-        Serial.println("Left T");
-#endif
-    // We haven't reached half of the turn
-    if (!white_corner)
-    {
-        line_signal[LEFT_MOTOR] = STOP;
-        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
-    }
-    else
-    {
-        LeftCorner();
-    }
-    
-    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))
-    {
-        if (!white_corner)
-        {
-            white_corner = true;
-        }
-    }
-}
-
-void RightT(){
-#ifdef DEBUG
-        Serial.println("Right T");
-#endif
-    // We haven't reached half of the turn
-    if (!white_corner)
-    {
-        line_signal[LEFT_MOTOR] = LEFT_FORWARD+22;
-        line_signal[RIGHT_MOTOR] = STOP;
-    }
-    else
-    {
-        RightCorner();
-    }
-    
-    if (!OnLine(LEFT_LEFT_LINE_SENSOR))
-    {
-        if (!white_corner)
-        {
-            white_corner = true;
-        }
-    }
-}
-
-void LeftWeird(){
-#ifdef DEBUG
-        Serial.println("Left Weird");
-#endif
-    // We haven't reached half of the turn
-    if (!(white_corner && black_corner))
-    {
-        line_signal[LEFT_MOTOR] = STOP;
-        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
-    }
-    else
-    {
-        LeftCorner();
-    }
-    
-    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))
-    {
-        if (!white_corner && black_corner)
-        {
-            white_corner = true;
-        }
-    }
-    else{
-        if (!black_corner)
-        {
-            black_corner = true;
-        }
-    }
-}
-
-void RightWeird(){
-#ifdef DEBUG
-        Serial.println("Right Weird");
-#endif
-    // We haven't reached half of the turn
-    if (!(white_corner && black_corner))
-    {
-        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
-        line_signal[RIGHT_MOTOR] = STOP;
-    }
-    else
-    {
-        RightCorner();
-    }
-    
-    if (!OnLine(LEFT_LEFT_LINE_SENSOR))
-    {
-        if (!white_corner && black_corner)
-        {
-            white_corner = true;
-        }
-    }
-    else {
-        if (!black_corner)
-        {
-            black_corner = true;
-        }
-    }
-}
 //we want to turn 180 degrees for our left
 void Turn() {
 #ifdef DEBUG
         Serial.println("Turn");
-#endif
-    line_signal[LEFT_MOTOR] = LEFT_TURN;
-    line_signal[RIGHT_MOTOR] = RIGHT_TURN;
-    
-    if (OnLine(LEFT_LEFT_LINE_SENSOR))
+#endif    
+    /*Top corner is used just to say if it is the first time we are entering in the function.Just to be sure if the right line sensor
+    is or not over the line*/
+    if(!top_corner) {
+      line_signal[LEFT_MOTOR] = STOP;
+      line_signal[RIGHT_MOTOR] = STOP;
+      top_corner = true;
+    }
+    else
     {
-        if (!black_corner)
-        {
-            black_corner = true;
-        }
+        line_signal[LEFT_MOTOR] = LEFT_TURN;
+        line_signal[RIGHT_MOTOR] = RIGHT_TURN;
     }
     
-    if (OnLine(RIGHT_LINE_SENSOR) && black_corner && entering_intersection && !exiting_intersection)
+    //After an intersection mark as a normal path again
+    if(OnLine(RIGHT_LINE_SENSOR) && top_corner && !black_corner) black_corner = true;
+    else if(!OnLine(RIGHT_LINE_SENSOR) && top_corner && black_corner && !white_corner) white_corner = true;
+    else if (OnLine(RIGHT_LINE_SENSOR) && top_corner && black_corner && white_corner && entering_intersection && !exiting_intersection)
     {
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+        white_corner = false;
+        black_corner = false;
+        top_corner = false;
+        second_white_corner = false;
         exiting_intersection = true;
         entering_intersection = false;
-        black_corner = false;
+        updatePath();
     }
-
 } 
+
+void Target() {
+#ifdef DEBUG
+        Serial.println("Target");
+#endif    
+    
+    if(distance[FRONT_SPEAKER] > 30)
+    {
+        Forward();
+    }
+    else
+    {
+        line_signal[LEFT_MOTOR] = int(float(STOP)-float(STOP-LEFT_FORWARD)*float(distance[FRONT_SPEAKER]-claws)/30.0);
+        line_signal[RIGHT_MOTOR] = int(float(STOP)+float(STOP-LEFT_FORWARD)*float(distance[FRONT_SPEAKER]-claws)/30.0);
+    }
+}
 
 void LineControl() {
     on_intersection = OnIntersection();
@@ -514,32 +305,23 @@ void LineControl() {
         case FORWARD:
           Forward();
           break;
-        case LEFT_CORNER:
+        case LEFTS:
           LeftS();
           break;
-        case RIGHT_CORNER:
+        case RIGHTS:
           RightS();
           break;
-        case LEFT_CROSS:
+        case LEFTS_CROSS:
           LeftSCross();
           break;
-        case RIGHT_CROSS:
-          RightSCross();
-          break;
-        case LEFT_T:
-          LeftS();
-          break;
-        case RIGHT_T:
-          RightS();
-          break;
-        case LEFT_WEIRD:
-          LeftSCross();
-          break;
-        case RIGHT_WEIRD:
+        case RIGHTS_CROSS:
           RightSCross();
           break;
         case TURN:
           Turn();
+          break;
+        case TARGET:
+          Target();
           break;
         case FULL_STOP:
           MotorStop();
@@ -562,34 +344,11 @@ void MotorControl(){
     right_servo.write(motor_signal[RIGHT_MOTOR]);
 }
 
-void Button(){
-    current_button_state = digitalRead(BUTTON_PIN);
-    if(current_button_state != last_button_state){
-      if (current_button_state == HIGH)
-      {
-          button_state = !button_state;
-          if (!button_state){
-            Serial.println("Stopped");
-            MotorStop();
-            LEDsOff();
-          }
-          else {
-            Serial.println("Started");
-            MotorStart();
-            delay(200);
-          }
-      }
-      delay(50);
-    }
-    last_button_state = current_button_state;
-}
-
 void setup() {
     MotorSetup();
     LineSetup();
     // SpeakerSetup();
-
-    pinMode(BUTTON_PIN, INPUT);
+    ButtonSetup();
 
     Serial.begin(9600);              //  setup serial
 
@@ -598,8 +357,7 @@ void setup() {
 }
 
 void loop() {
-    Button();
-    if(!button_state) {
+    if(!Button()) {
       return;  
     }
     MotorControl();

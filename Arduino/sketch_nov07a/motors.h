@@ -5,7 +5,6 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-
 #define LEFT_FORWARD 20 
 #define STOP 90 
 #define LEFT_BACKWARD 160

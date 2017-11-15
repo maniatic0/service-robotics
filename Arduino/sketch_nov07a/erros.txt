@@ -1,0 +1,237 @@
+
+void LeftCorner(){
+#ifdef DEBUG
+        Serial.println("Left Corner");
+#endif
+    if (!top_corner)
+    {
+        line_signal[LEFT_MOTOR] = 100;
+        line_signal[RIGHT_MOTOR] = 110;
+    }
+    else
+    {
+        line_signal[LEFT_MOTOR] = 70;
+        line_signal[RIGHT_MOTOR] = 90;
+    }
+    
+    //After an intersection mark as a normal path again
+    if (OnLine(RIGHT_RIGHT_LINE_SENSOR) && !top_corner)
+    {
+        top_corner = true;
+    }
+
+    if (OnLine(LEFT_LINE_SENSOR) && top_corner && entering_intersection && !exiting_intersection)
+    {
+        exiting_intersection = true;
+        entering_intersection = false;
+        top_corner = false;
+        updatePath();
+    }
+}
+
+void RightCorner(){
+#ifdef DEBUG
+        Serial.println("Right Corner");
+#endif
+    if (!top_corner)
+    {
+        line_signal[LEFT_MOTOR] = 60;
+        line_signal[RIGHT_MOTOR] = 82;
+    }
+    else
+    {
+        line_signal[LEFT_MOTOR] = 90;
+        line_signal[RIGHT_MOTOR] = 110;
+  
+    }
+    
+    //After an intersection mark as a normal path again
+    if (OnLine(LEFT_LEFT_LINE_SENSOR) && !top_corner)
+    {
+        top_corner = true;
+    }
+
+    if (OnLine(RIGHT_LINE_SENSOR) && top_corner && entering_intersection && !exiting_intersection)
+    {
+        exiting_intersection = true;
+        entering_intersection = false;
+        top_corner = false;
+        updatePath();
+    }
+}
+
+
+void LeftCross(){
+#ifdef DEBUG
+        Serial.println("Left Cross");
+#endif
+    // We haven't reached half of the turn
+    if (!(white_corner && black_corner && second_white_corner))
+    {
+        line_signal[LEFT_MOTOR] = STOP;
+        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+    else
+    {
+        LeftCorner();
+    }
+    
+    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))
+    {
+        if (!white_corner)
+        {
+            white_corner = true;
+        }
+        else if(!second_white_corner && black_corner) {
+            second_white_corner = true;
+        }
+    }
+    else {
+        if (!black_corner && white_corner)
+        {
+            black_corner = true;
+        }
+    }
+}
+
+void RightCross(){
+#ifdef DEBUG
+        Serial.println("Right Cross");
+#endif
+    // We haven't reached half of the turn
+    if (!(white_corner && black_corner && second_white_corner))
+    {
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+        line_signal[RIGHT_MOTOR] = STOP;
+    }
+    else
+    {
+        RightCorner();
+    }
+    
+    if (!OnLine(LEFT_LEFT_LINE_SENSOR))
+    {
+        if (!white_corner)
+        {
+            white_corner = true;
+        }
+        else if(!second_white_corner && black_corner) {
+            second_white_corner = true;
+        }
+    }
+    else {
+        if (!black_corner && white_corner)
+        {
+            black_corner = true;
+        }
+    }
+}
+
+
+void LeftT(){
+#ifdef DEBUG
+        Serial.println("Left T");
+#endif
+    // We haven't reached half of the turn
+    if (!white_corner)
+    {
+        line_signal[LEFT_MOTOR] = STOP;
+        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+    else
+    {
+        LeftCorner();
+    }
+    
+    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))
+    {
+        if (!white_corner)
+        {
+            white_corner = true;
+        }
+    }
+}
+
+void RightT(){
+#ifdef DEBUG
+        Serial.println("Right T");
+#endif
+    // We haven't reached half of the turn
+    if (!white_corner)
+    {
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD+22;
+        line_signal[RIGHT_MOTOR] = STOP;
+    }
+    else
+    {
+        RightCorner();
+    }
+    
+    if (!OnLine(LEFT_LEFT_LINE_SENSOR))
+    {
+        if (!white_corner)
+        {
+            white_corner = true;
+        }
+    }
+}
+
+void LeftWeird(){
+#ifdef DEBUG
+        Serial.println("Left Weird");
+#endif
+    // We haven't reached half of the turn
+    if (!(white_corner && black_corner))
+    {
+        line_signal[LEFT_MOTOR] = STOP;
+        line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
+    }
+    else
+    {
+        LeftCorner();
+    }
+    
+    if (!OnLine(RIGHT_RIGHT_LINE_SENSOR))
+    {
+        if (!white_corner && black_corner)
+        {
+            white_corner = true;
+        }
+    }
+    else{
+        if (!black_corner)
+        {
+            black_corner = true;
+        }
+    }
+}
+
+void RightWeird(){
+#ifdef DEBUG
+        Serial.println("Right Weird");
+#endif
+    // We haven't reached half of the turn
+    if (!(white_corner && black_corner))
+    {
+        line_signal[LEFT_MOTOR] = LEFT_FORWARD;
+        line_signal[RIGHT_MOTOR] = STOP;
+    }
+    else
+    {
+        RightCorner();
+    }
+    
+    if (!OnLine(LEFT_LEFT_LINE_SENSOR))
+    {
+        if (!white_corner && black_corner)
+        {
+            white_corner = true;
+        }
+    }
+    else {
+        if (!black_corner)
+        {
+            black_corner = true;
+        }
+    }
+}
