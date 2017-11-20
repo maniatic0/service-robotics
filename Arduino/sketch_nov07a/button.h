@@ -7,13 +7,20 @@
 #include <Arduino.h>
 
 #define BUTTON_PIN 7
+#define CLICKER_PIN 8
 
 extern bool button_state;
 extern int current_button_state;
 extern int last_button_state;
 
+extern bool clicker_state;
+extern int clicker_button_state;
+extern int last_clicker_state;
+
 bool Button();
 
-void ButtonSetup();
+bool Clicker();
+
+void ButtonClickerSetup();
 
 #endif

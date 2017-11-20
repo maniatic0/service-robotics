@@ -28,6 +28,31 @@ bool Button(){
     return button_state;
 }
 
-void ButtonSetup(){
+bool clicker_state = false;
+int current_clicker_state = 0;
+int last_clicker_state = 0;
+
+bool Clicker(){
+    current_clicker_state = digitalRead(CLICKER_PIN);
+    if(current_clicker_state != last_clicker_state){
+      if (current_clicker_state == HIGH)
+      {
+          clicker_state = !clicker_state;
+          if (!clicker_state){
+            Serial.println("Click Off");
+          }
+          else {
+            Serial.println("Click On");
+          }
+      }
+      delay(50);
+    }
+    last_clicker_state = current_clicker_state;
+    return clicker_state;
+}
+
+void ButtonClickerSetup(){
 	pinMode(BUTTON_PIN, INPUT);
+  pinMode(CLICKER_PIN, INPUT);
+  last_clicker_state = digitalRead(CLICKER_PIN);
 }

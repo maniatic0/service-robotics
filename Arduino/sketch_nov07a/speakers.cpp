@@ -1,7 +1,7 @@
 
 #include "speakers.h"
-int trigPin[] = {1,3,5};
-int echoPin[] = {2,4,6};
+int trigPin[] = {12,12,5};
+int echoPin[] = {11,11,6};
 long distance[] = {0,0,0};
 
 void ReadSpeakers(){

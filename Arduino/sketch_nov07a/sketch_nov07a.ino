@@ -1,3 +1,5 @@
+#include "Timer.h"
+
 #include "lines.h"
 #include "motors.h"
 #include "leds.h"
@@ -25,8 +27,10 @@
 #define ENTRANCE 10
 #define TURN 11
 #define FULL_STOP 12
-int dir = RIGHT_CROSS;
-#define PATH_LENGTH 13
+#define DELAY 13
+
+#define TIMER_DELAY 5000
+int dir = LEFT_CORNER;
 
 /*int path[PATH_LENGTH] = {LEFT_CORNER, LEFT_CROSS, FULL_STOP};*/
 /*
@@ -41,13 +45,14 @@ int path[PATH_LENGTH] = {LEFT_CORNER, RIGHT_CORNER,
     LEFT_CORNER,RIGHT_CORNER,
     RIGHT_CORNER, FULL_STOP};*/
 
-int path[PATH_LENGTH] = {LEFT_CORNER,RIGHT_CORNER,
+/*int path[PATH_LENGTH] = {LEFT_CORNER,RIGHT_CORNER,
     LEFT_T,RIGHT_CROSS,
     RIGHT_CORNER,RIGHT_CORNER,
     LEFT_CORNER,LEFT_CORNER,
     FORWARD,RIGHT_CORNER,
-    LEFT_CORNER,LEFT_CORNER,FULL_STOP};
-
+    LEFT_CORNER,LEFT_CORNER,TARGET,TURN,FULL_STOP};*/
+#define PATH_LENGTH 3
+int path[PATH_LENGTH] = {TARGET, TURN, FULL_STOP};
 int path_pos = 0;
 
 bool on_intersection = false;
@@ -58,7 +63,10 @@ bool white_corner = false; // for cross intersections
 bool black_corner = false; // for cross intersections
 bool second_white_corner = false; // for cross intersections
 
-int claws = 4; // cm
+Timer timer;
+
+#define CLAWS 2 
+// cm
 
 void updatePath() {
     path_pos++;
@@ -245,7 +253,7 @@ void Turn() {
     //After an intersection mark as a normal path again
     if(OnLine(RIGHT_LINE_SENSOR) && top_corner && !black_corner) black_corner = true;
     else if(!OnLine(RIGHT_LINE_SENSOR) && top_corner && black_corner && !white_corner) white_corner = true;
-    else if (OnLine(RIGHT_LINE_SENSOR) && top_corner && black_corner && white_corner && entering_intersection && !exiting_intersection)
+    else if (OnLine(LEFT_LINE_SENSOR) && top_corner && black_corner && white_corner && entering_intersection && !exiting_intersection)
     {
         line_signal[LEFT_MOTOR] = LEFT_FORWARD;
         line_signal[RIGHT_MOTOR] = RIGHT_FORWARD;
@@ -263,20 +271,42 @@ void Target() {
 #ifdef DEBUG
         Serial.println("Target");
 #endif    
-    
-    if(distance[FRONT_SPEAKER] > 30)
+    ReadSpeakers();
+    NormalLineControl();
+    if(distance[FRONT_SPEAKER] <= 30 + CLAWS)
     {
-        Forward();
+        if(line_signal[LEFT_MOTOR] != STOP) line_signal[LEFT_MOTOR] = int(float(STOP)-float(STOP-LEFT_FORWARD)*float(distance[FRONT_SPEAKER]-CLAWS)/30.0);
+        if(line_signal[RIGHT_MOTOR] != STOP) line_signal[RIGHT_MOTOR] = int(float(STOP)+float(STOP-LEFT_FORWARD)*float(distance[FRONT_SPEAKER]-CLAWS)/30.0);
     }
-    else
-    {
-        line_signal[LEFT_MOTOR] = int(float(STOP)-float(STOP-LEFT_FORWARD)*float(distance[FRONT_SPEAKER]-claws)/30.0);
-        line_signal[RIGHT_MOTOR] = int(float(STOP)+float(STOP-LEFT_FORWARD)*float(distance[FRONT_SPEAKER]-claws)/30.0);
+
+    if(Clicker()){
+        exiting_intersection = true;
+        entering_intersection = false;
+        updatePath();
+    }
+}
+
+void DelayAfter() {
+    updatePath();
+    exiting_intersection = true;
+    entering_intersection = false;
+    top_corner = false;
+}
+
+void Delay() {
+#ifdef DEBUG
+        Serial.println("Delay");
+#endif    
+
+    NormalLineControl();
+    if(!top_corner) {
+        timer.after(TIMER_DELAY, DelayAfter);
     }
 }
 
 void LineControl() {
-    on_intersection = OnIntersection();
+    on_intersection = OnIntersection() || dir == TURN || dir == DELAY || dir == TARGET;
+    
     //End of the intersection
     if (!on_intersection && !(entering_intersection && !exiting_intersection))
     {
@@ -323,6 +353,9 @@ void LineControl() {
         case TARGET:
           Target();
           break;
+        case DELAY:
+          Delay();
+          break;
         case FULL_STOP:
           MotorStop();
           updatePath();
@@ -347,8 +380,8 @@ void MotorControl(){
 void setup() {
     MotorSetup();
     LineSetup();
-    // SpeakerSetup();
-    ButtonSetup();
+    SpeakerSetup();
+    ButtonClickerSetup();
 
     Serial.begin(9600);              //  setup serial
 
@@ -360,6 +393,7 @@ void loop() {
     if(!Button()) {
       return;  
     }
+    timer.update();
     MotorControl();
     UpdateLEDs();
 #ifdef DEBUG
@@ -377,5 +411,9 @@ void loop() {
     Serial.print(" ");
     Serial.print(OnLine(RIGHT_RIGHT_LINE_SENSOR));
     Serial.println(" "); 
+    
+    Serial.print("Speaker: ");
+    Serial.print(distance[FRONT_SPEAKER]);
+    Serial.println(" cm"); 
 #endif
 }

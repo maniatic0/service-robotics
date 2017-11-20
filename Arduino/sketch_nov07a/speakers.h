@@ -6,9 +6,9 @@
 #include <Arduino.h>
 
 #define MAGIC_SPEAKER_CONSTANT 29.1
-#define SPEAKER_AMOUNT 3
-#define LEFT_SPEAKER 0
-#define FRONT_SPEAKER 1
+#define SPEAKER_AMOUNT 1
+#define LEFT_SPEAKER 1
+#define FRONT_SPEAKER 0
 #define RIGHT_SPEAKER 2
 #define SPEAKER_THRESHOLD 30
 

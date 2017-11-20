@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"ve",
+				"vec3"
+			],
+			[
+				"sha",
+				"shadow_depth"
+			],
+			[
+				"vec",
+				"vec4"
+			],
+			[
+				"te",
+				"texture"
+			],
+			[
+				"norm",
+				"normalize"
+			],
+			[
 				"LEFT_",
 				"LEFT_FORWARD"
 			],
@@ -152,10 +172,6 @@
 				"InterpretedInstruction"
 			],
 			[
-				"vec",
-				"vector"
-			],
-			[
 				"ge",
 				"generateJointPathTrajectory"
 			],
@@ -212,10 +228,6 @@
 				"def\tFunction"
 			],
 			[
-				"norm",
-				"normalized"
-			],
-			[
 				"nor",
 				"normalize"
 			],
@@ -260,46 +272,61 @@
 	"buffers":
 	[
 		{
-			"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/button.h",
+			"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/resolve_deferred.frag",
 			"settings":
 			{
-				"buffer_size": 263,
+				"buffer_size": 602,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/resolve_deferred.vert",
+			"settings":
+			{
+				"buffer_size": 366,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/accumulate_lights.frag",
+			"settings":
+			{
+				"buffer_size": 2092,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/sketch_nov07a.ino",
+			"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/fill_gbuffer.frag",
 			"settings":
 			{
-				"buffer_size": 0,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/button.cpp",
-			"settings":
-			{
-				"buffer_size": 715,
+				"buffer_size": 1244,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/motors.h",
+			"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/phong.frag",
 			"settings":
 			{
-				"buffer_size": 575,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
+				"buffer_size": 1955,
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/Users/Christian/Desktop/wifi_start.bat",
+			"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/accumulate_lights.vert",
 			"settings":
 			{
-				"buffer_size": 32,
+				"buffer_size": 223,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/fill_shadowmap.vert",
+			"settings":
+			{
+				"buffer_size": 222,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		}
@@ -371,11 +398,18 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/fill_shadowmap.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/fill_gbuffer.vert",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/fill_gbuffer.frag",
+		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/blinnPhong.frag",
+		"/C/Users/Christian/Desktop/wifi_start.bat",
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/motors.h",
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/button.cpp",
+		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/button.h",
 		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/sketch_nov07a.ino",
 		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/serial_com.h",
 		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/erros.txt",
 		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Python Solver/solver.py",
-		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/motors.h",
 		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/speakers.h",
 		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/lines.h",
 		"/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/speakers.cpp",
@@ -398,7 +432,6 @@
 		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/fallbackSize.frag",
 		"/C/Users/Christian/Google Drive/Lund/Clases/MMKF15 Applied Robotics/Lab/Assignment_Christian_Oliveros/Assignment_Christian_Oliveros.m",
 		"/C/Users/Christian/Google Drive/Lund/Clases/MMKF15 Applied Robotics/Lab/Kinematic_Assignment_Christian_Oliveros.m",
-		"/C/Users/Christian/Desktop/wifi_start.bat",
 		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/vector.py",
 		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/Utilities/constants.py",
 		"/C/Users/Christian/Desktop/RaspPi/rasppi-printer/main.py",
@@ -449,7 +482,6 @@
 		"/C/Users/Christian/Downloads/ObstacleAvoidance.cs",
 		"/C/Users/Christian/Downloads/CentralWithShortWhiskers.cs",
 		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/blinnPhong.vert",
-		"/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/blinnPhong.frag",
 		"/C/Users/Christian/Downloads/Telegram Desktop/assignment3 (2).cpp",
 		"/C/Users/Christian/Downloads/Telegram Desktop/assignment3.cpp",
 		"/C/Users/Christian/Downloads/Telegram Desktop/phong.vert",
@@ -554,44 +586,16 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/button.h",
+					"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/resolve_deferred.frag",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 263,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								255,
-								255
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/sketch_nov07a.ino",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
+						"buffer_size": 602,
 						"regions":
 						{
 						},
@@ -604,37 +608,150 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Arduino-like IDE/Arduino.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/button.cpp",
+					"buffer": 1,
+					"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/resolve_deferred.vert",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 715,
+						"buffer_size": 366,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								715,
-								715
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/accumulate_lights.frag",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2092,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1399,
+								1399
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/fill_gbuffer.frag",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1244,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1217,
+								1217
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 315.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAF80/phong.frag",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1955,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1779,
+								1807
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/accumulate_lights.vert",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 223,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -644,59 +761,31 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/C/Users/Christian/Desktop/Service Robotics/service-robotics/Arduino/sketch_nov07a/motors.h",
+					"buffer": 6,
+					"file": "/C/Users/Christian/Documents/Lund/Project/CG_Labs/shaders/EDAN35/fill_shadowmap.vert",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 575,
+						"buffer_size": 222,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								232,
-								232
+								218,
+								218
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax"
+							"syntax": "Packages/OpenGL Shading Language (GLSL)/GLSL.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/C/Users/Christian/Desktop/wifi_start.bat",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 32,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								30,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Batch File/Batch File.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
