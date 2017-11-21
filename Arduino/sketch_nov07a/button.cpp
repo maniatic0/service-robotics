@@ -12,12 +12,16 @@ bool Button(){
       {
           button_state = !button_state;
           if (!button_state){
+#ifdef DEBUG
             Serial.println("Stopped");
+#endif
             MotorStop();
             LEDsOff();
           }
           else {
+#ifdef DEBUG
             Serial.println("Started");
+#endif
             MotorStart();
             delay(200);
           }
@@ -39,10 +43,14 @@ bool Clicker(){
       {
           clicker_state = !clicker_state;
           if (!clicker_state){
+#ifdef DEBUG
             Serial.println("Click Off");
+#endif
           }
           else {
+#ifdef DEBUG
             Serial.println("Click On");
+#endif
           }
       }
       delay(50);

@@ -2,6 +2,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include "configuration.h"
 #include "motors.h"
 #include "leds.h"
 #include <Arduino.h>
