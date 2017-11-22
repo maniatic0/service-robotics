@@ -13,8 +13,37 @@ void Target() {
     }
 
     if(Clicker()){
+        TargetPick();
         exiting_intersection = true;
         entering_intersection = false;
         updatePath();
     }
+}
+
+void TargetPick() {
+    MotorStop();
+
+    RiseAttach();
+    RiseMove(DOWN);
+    delay(300);
+    RiseDettach();
+
+    GrabAttach();
+    GrabMove(CLOSE);
+    delay(1000);
+    GrabMove(CLOSE_GRAB);
+
+    RiseAttach();
+    RiseMove(UP);
+    while(!Stopper()){}
+    RiseDettach();
+
+    GrabMove(OPEN_GRAB);
+    delay(2000);
+
+    GrabMove(OPEN);
+    delay(500);
+    GrabDettach();
+
+    MotorStart();
 }

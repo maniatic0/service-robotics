@@ -2,8 +2,10 @@
 
 Servo left_servo;  // create servo object to control a servo
 Servo right_servo;  // create servo object to control a servo
-int servoPin[] = {9, 10};
-float motor_signal[MOTORS] = {0,0};
+Servo rise_servo;  // create servo object to control a servo
+Servo grab_servo;  // create servo object to control a servo
+int servoPin[] = {7, 8, 9, 10};
+float motor_signal[MOTORS] = {0,0,0,0};
 
 void MotorSetup() {
 	MotorStop();
@@ -19,3 +21,26 @@ void MotorStart() {
   right_servo.attach(servoPin[RIGHT_MOTOR]);
 }
 
+void RiseAttach() {
+	rise_servo.attach(servoPin[RISE_MOTOR]);
+}
+
+void RiseDettach() {
+	rise_servo.detach();
+}
+
+void RiseMove(int speed) {
+	rise_servo.write(speed);
+}
+
+void GrabAttach() {
+	grab_servo.attach(servoPin[GRAB_MOTOR]);
+}
+
+void GrabDettach() {
+	grab_servo.detach();
+}
+
+void GrabMove(int speed) {
+	grab_servo.write(speed);
+}

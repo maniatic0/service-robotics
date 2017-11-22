@@ -5,6 +5,7 @@
 
 #include <Arduino.h>
 #include "lines.h"
+#include "button.h"
 #define LED_AMOUNT 4
 
 extern int led_pin[];

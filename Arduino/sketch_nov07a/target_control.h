@@ -13,4 +13,6 @@
 
 void Target();
 
+void TargetPick();
+
 #endif

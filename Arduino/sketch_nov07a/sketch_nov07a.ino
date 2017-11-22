@@ -26,8 +26,9 @@ void setup() {
     LineSetup();
     SpeakerSetup();
     ButtonClickerSetup();
-
+#ifdef DEBUG
     Serial.begin(9600);              //  setup serial
+#endif
     PathSetup();
     LEDsSetup();
 }
@@ -54,7 +55,7 @@ void loop() {
     Serial.print(" ");
     Serial.print(OnLine(RIGHT_RIGHT_LINE_SENSOR));
     Serial.println(" "); 
-    
+
     Serial.print("Speaker: ");
     Serial.print(distance[FRONT_SPEAKER]);
     Serial.println(" cm"); 
