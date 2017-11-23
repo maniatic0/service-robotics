@@ -59,5 +59,10 @@ void loop() {
     Serial.print("Speaker: ");
     Serial.print(distance[FRONT_SPEAKER]);
     Serial.println(" cm"); 
+
+    Serial.print("Clicker: ");
+    Serial.print(Clicker());
+    Serial.print(" Stopper: ");
+    Serial.println(Stopper());
 #endif
 }
