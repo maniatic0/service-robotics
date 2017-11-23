@@ -1,6 +1,6 @@
 #include "leds.h"
 
-int led_pin[LED_AMOUNT] = {5,4,3,2};
+int led_pin[] = {5,4,3,2};
 
 
 void UpdateLED(int i, bool status) {
@@ -13,12 +13,11 @@ void UpdateLED(int i, bool status) {
 }
 
 void UpdateLEDs(){
-    UpdateLED(0, OnLine(LEFT_LEFT_LINE_SENSOR));
-    UpdateLED(1, OnLine(LEFT_LINE_SENSOR));
-    UpdateLED(2, OnLine(RIGHT_LINE_SENSOR));
-    UpdateLED(3, OnLine(RIGHT_RIGHT_LINE_SENSOR));
-    UpdateLED(0, Clicker());
-    UpdateLED(3, Stopper());
+    UpdateLED(0, /*OnLine(LEFT_LEFT_LINE_SENSOR) || */Clicker());
+    //UpdateLED(1, OnLine(LEFT_LINE_SENSOR));
+    //UpdateLED(2, OnLine(RIGHT_LINE_SENSOR));
+    //UpdateLED(3, /*OnLine(RIGHT_RIGHT_LINE_SENSOR) || */Stopper());
+    UpdateLED(1, Stopper());
 }
 
 void LEDsSetup(){

@@ -11,21 +11,12 @@
 #define CLICKER_PIN 4
 #define STOPPER_PIN 5
 
-#define ANALOG_CLICKER_TRESHOLD 120
-#define CLICKER_PRESSED 60
-#define STOPPER_PRESSED 60
+#define CLICKER_PRESSED 20
+#define STOPPER_PRESSED 20
 
 extern bool button_state;
 extern int current_button_state;
 extern int last_button_state;
-
-extern bool clicker_state;
-extern int clicker_button_state;
-extern int last_clicker_state;
-
-extern bool stopper_state;
-extern int stopper_button_state;
-extern int last_stopper_state;
 
 bool Button();
 

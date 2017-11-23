@@ -33,7 +33,7 @@ void setup() {
     LEDsSetup();
 }
 
-void loop() {
+void loop() { 
     if(!Button()) {
       return;  
     }

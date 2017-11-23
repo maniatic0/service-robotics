@@ -22,7 +22,7 @@
 #define FULL_STOP 12
 #define DELAY 13
 
-#define PATH_LENGTH 4
+#define PATH_LENGTH 3
 
 extern int dir;
 extern int path[];

@@ -28,7 +28,7 @@ int path[PATH_LENGTH] = {LEFT_CORNER, RIGHT_CORNER,
     FULL_STOP};*/
 
 int dir = LEFT_CORNER;
-int path[PATH_LENGTH] = {RIGHT_CORNER,TARGET, TURN, FULL_STOP};
+int path[PATH_LENGTH] = {TARGET, TURN, FULL_STOP};
 int path_pos = 0;
 
 void updatePath() {

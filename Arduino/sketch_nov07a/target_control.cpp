@@ -27,6 +27,9 @@ void TargetPick() {
     RiseMove(DOWN);
     delay(300);
     RiseDettach();
+#ifdef DEBUG
+        Serial.println("Claw Down");
+#endif
 
     GrabAttach();
     GrabMove(CLOSE);
