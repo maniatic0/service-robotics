@@ -1,4 +1,3 @@
-
 #include "button.h"
 
 bool button_state = false;
@@ -37,11 +36,11 @@ bool Clicker(){
 }
 
 bool Stopper(){
-    return analogRead(STOPPER_PIN)==HIGH;
+    return digitalRead(STOPPER_PIN)==HIGH;
 }
 
 void ButtonClickerSetup(){
-	pinMode(BUTTON_PIN, INPUT);
+  pinMode(BUTTON_PIN, INPUT);
   pinMode(CLICKER_PIN, INPUT);
   pinMode(STOPPER_PIN, INPUT);
 }

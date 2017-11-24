@@ -30,17 +30,18 @@ void setup() {
     Serial.begin(9600);              //  setup serial
 #endif
     PathSetup();
-    LEDsSetup();
+    //LEDsSetup();
 }
 
-void loop() { 
+void loop() {
     if(!Button()) {
       return;  
     }
     timer.update();
     MotorControl();
-    UpdateLEDs();
+    //UpdateLEDs();
 #ifdef DEBUG
+  /*
     Serial.print("Left motor:");
     Serial.print(motor_signal[LEFT_MOTOR]);
     Serial.print(" Right motor:");
@@ -59,7 +60,7 @@ void loop() {
     Serial.print("Speaker: ");
     Serial.print(distance[FRONT_SPEAKER]);
     Serial.println(" cm"); 
-
+    */
     Serial.print("Clicker: ");
     Serial.print(Clicker());
     Serial.print(" Stopper: ");
