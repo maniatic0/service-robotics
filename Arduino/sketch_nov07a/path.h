@@ -22,7 +22,7 @@
 #define FULL_STOP 12
 #define DELAY 13
 
-#define PATH_LENGTH 2
+#define PATH_LENGTH 14
 #define PATHS_AMOUNT 5
 #define TARGET1 7
 #define TARGET2 14

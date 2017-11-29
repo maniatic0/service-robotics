@@ -17,8 +17,6 @@ void UpdateLEDs(){
     UpdateLED(1, OnLine(LEFT_LINE_SENSOR));
     UpdateLED(2, OnLine(RIGHT_LINE_SENSOR));
     UpdateLED(3, OnLine(RIGHT_RIGHT_LINE_SENSOR));
-    UpdateLED(0, Clicker());
-    UpdateLED(3, Stopper());
 }
 
 void LEDsSetup(){

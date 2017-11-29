@@ -6,7 +6,7 @@
 
 #define TIMER_DELAY 5000
 
-#define CLAWS 2 
+#define CLAWS 3 
 // cm
 
 #endif

@@ -30,7 +30,7 @@ void setup() {
     Serial.begin(9600);              //  setup serial
 #endif
     PathSetup();
-    //LEDsSetup();
+    LEDsSetup();
 }
 
 void loop() {
@@ -39,7 +39,7 @@ void loop() {
     }
     timer.update();
     MotorControl();
-    //UpdateLEDs();
+    UpdateLEDs();
 #ifdef DEBUG
   /*
     Serial.print("Left motor:");

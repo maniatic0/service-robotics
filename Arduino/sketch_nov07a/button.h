@@ -8,8 +8,8 @@
 #include <Arduino.h>
 
 #define BUTTON_PIN 13
-#define CLICKER_PIN 4
-#define STOPPER_PIN 5
+//#define CLICKER_PIN 4
+//#define STOPPER_PIN 5
 
 #define CLICKER_PRESSED 20
 #define STOPPER_PRESSED 20
@@ -20,9 +20,9 @@ extern int last_button_state;
 
 bool Button();
 
-bool Clicker();
+//bool Clicker();
 
-bool Stopper();
+//bool Stopper();
 
 void ButtonClickerSetup();
 

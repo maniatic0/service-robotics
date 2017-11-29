@@ -40,8 +40,15 @@ int exit_path[EXIT] = {LEFT_CORNER, FORWARD,
     RIGHT_CORNER, FULL_STOP};
 
 int dir = LEFT_CORNER;
-/*int path[TARGET1+TARGET2+TARGET3+ENTRANCE_END] = { target1, target2, target3, entrance};*/
-int path[PATH_LENGTH] = {TARGET, FULL_STOP};
+int path[PATH_LENGTH] = {LEFT_CORNER, RIGHT_CORNER,
+    RIGHT_T,LEFT_CORNER,
+    LEFT_T, TARGET,
+    TURN,
+    FORWARD, TARGET,
+    TURN,
+    FORWARD, TARGET,
+    TURN,
+    FULL_STOP};
 
 int path_control_length[PATHS_AMOUNT] = {PATH_LENGTH, TARGET1, TARGET2, TARGET3, EXIT};
 int* path_control[PATHS_AMOUNT] = {path, target1, target2, target3, exit_path};

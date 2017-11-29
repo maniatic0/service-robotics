@@ -113,8 +113,8 @@ void LeftSCross() {
     }
     
     //After an intersection mark as a normal path again
-    if(OnLine(RIGHT_LINE_SENSOR) && white_corner && !black_corner) black_corner = true;
-    else if(!OnLine(RIGHT_LINE_SENSOR) && white_corner && black_corner && !second_white_corner) second_white_corner = true;
+    if(OnLine(RIGHT_RIGHT_LINE_SENSOR) && white_corner && !black_corner) black_corner = true;
+    else if(!OnLine(RIGHT_RIGHT_LINE_SENSOR) && white_corner && black_corner && !second_white_corner) second_white_corner = true;
     else if (OnLine(RIGHT_LINE_SENSOR) && white_corner && black_corner && second_white_corner && entering_intersection && !exiting_intersection)
     {
         line_signal[LEFT_MOTOR] = LEFT_FORWARD;
@@ -145,8 +145,8 @@ void RightSCross() {
     }
     
     //After an intersection mark as a normal path again
-    if(OnLine(LEFT_LINE_SENSOR) && white_corner && !black_corner) black_corner = true;
-    else if(!OnLine(LEFT_LINE_SENSOR) && white_corner && black_corner && !second_white_corner) second_white_corner = true;
+    if(OnLine(LEFT_LEFT_LINE_SENSOR) && white_corner && !black_corner) black_corner = true;
+    else if(!OnLine(LEFT_LEFT_LINE_SENSOR) && white_corner && black_corner && !second_white_corner) second_white_corner = true;
     else if (OnLine(LEFT_LINE_SENSOR) && white_corner && black_corner && second_white_corner && entering_intersection && !exiting_intersection)
     {
         line_signal[LEFT_MOTOR] = LEFT_FORWARD;

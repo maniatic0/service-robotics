@@ -18,7 +18,7 @@ void MotorSetup() {
 #endif  
   GrabAttach();
   GrabMove(OPEN);
-  delay(600);
+  delay(800);
   GrabDettach();
 #ifdef DEBUG
   Serial.println("Claw Open");
