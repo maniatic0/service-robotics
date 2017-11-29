@@ -9,6 +9,20 @@ float motor_signal[MOTORS] = {0,0,0,0};
 
 void MotorSetup() {
 	MotorStop();
+  RiseAttach();
+  RiseMove(UP);
+  delay(350);
+  RiseDettach();
+#ifdef DEBUG
+  Serial.println("Claw up");
+#endif  
+  GrabAttach();
+  GrabMove(OPEN);
+  delay(600);
+  GrabDettach();
+#ifdef DEBUG
+  Serial.println("Claw Open");
+#endif  
 }
 
 void MotorStop() {

@@ -10,7 +10,9 @@ void Target() {
       RiseMove(DOWN);
       delay(220);
       RiseDettach();
-      Serial.println("Claw down");
+#ifdef DEBUG
+  Serial.println("Claw Down");
+#endif 
     }    
     ReadSpeakers();
     NormalLineControl();
@@ -36,21 +38,32 @@ void TargetPick() {
     GrabMove(CLOSE);
     delay(2000);
     GrabMove(CLOSE_GRAB);
-    Serial.println("Claw closed");
+#ifdef DEBUG
+  Serial.println("Claw Closed");
+#endif  
 
     RiseAttach();
     RiseMove(UP);
     delay(1500);
     RiseDettach();
-    Serial.println("Claw up");
+#ifdef DEBUG
+  Serial.println("Claw Up");
+#endif 
 
-    GrabMove(OPEN_GRAB);
-    delay(5000);
+    for(int i = 0; i < 20; i++) {
+      GrabMove(95);
+      delay(10);
+      GrabMove(85);
+      delay(10);
+    }
+    delay(2000);
 
     GrabMove(OPEN);
     delay(600);
     GrabDettach();
-    Serial.println("Claw open");
+#ifdef DEBUG
+  Serial.println("Claw Open");
+#endif 
 
     MotorStart();
 }

@@ -13,11 +13,11 @@
 #define LEFT_TURN 110 
 #define RIGHT_TURN 110
 
-#define OPEN 180
-#define OPEN_GRAB 118
-#define CLOSE 0
-#define CLOSE_GRAB 40
-#define DOWN 160
+#define OPEN 135
+#define OPEN_GRAB 95
+#define CLOSE 45
+#define CLOSE_GRAB 70
+#define DOWN 135
 #define UP 40
 
 #define MOTORS 4
