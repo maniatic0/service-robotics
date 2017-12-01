@@ -23,7 +23,7 @@
 #define DELAY 13
 
 #define PATH_LENGTH 14
-#define PATHS_AMOUNT 5
+#define PATHS_AMOUNT 4
 #define TARGET1 7
 #define TARGET2 14
 #define TARGET3 12

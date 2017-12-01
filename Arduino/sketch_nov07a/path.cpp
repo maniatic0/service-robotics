@@ -50,8 +50,8 @@ int path[PATH_LENGTH] = {LEFT_CORNER, RIGHT_CORNER,
     TURN,
     FULL_STOP};
 
-int path_control_length[PATHS_AMOUNT] = {PATH_LENGTH, TARGET1, TARGET2, TARGET3, EXIT};
-int* path_control[PATHS_AMOUNT] = {path, target1, target2, target3, exit_path};
+int path_control_length[PATHS_AMOUNT] = {TARGET1, TARGET2, TARGET3, EXIT};
+int* path_control[PATHS_AMOUNT] = {target1, target2, target3, exit_path};
 int path_control_index = 0;
 
 int path_pos = 0;

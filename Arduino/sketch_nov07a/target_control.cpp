@@ -8,7 +8,7 @@ void Target() {
       top_corner = true;
       RiseAttach();
       RiseMove(DOWN);
-      delay(260);
+      delay(200);
       RiseDettach();
 #ifdef DEBUG
   Serial.println("Claw Down");
@@ -56,7 +56,10 @@ void TargetPick() {
       GrabMove(85);
       delay(10);
     }
-    delay(2000);
+#ifdef DEBUG
+  Serial.println("Claw Moving");
+#endif
+    delay(1000);
 
     GrabMove(OPEN);
     delay(800);
