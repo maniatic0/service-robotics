@@ -11,6 +11,8 @@
 #include "path.h"
 #include "path_control.h"
 
+#define CLOSE_DISTANCE 30.0
+
 void Target();
 
 void TargetPick();

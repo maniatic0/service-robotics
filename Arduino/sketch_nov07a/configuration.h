@@ -8,7 +8,7 @@
 
   //#define DEBUG_MOTORS // Print Motors Values
   //#define DEBUG_LINE_SENSORS // Print Line Sensors Values
-  #define DEBUG_SPEAKERS // Print Speaker Values
+  //#define DEBUG_SPEAKERS // Print Speaker Values
 
 #endif // DEBUG
 
