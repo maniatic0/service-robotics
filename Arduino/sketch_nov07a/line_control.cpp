@@ -1,5 +1,10 @@
 #include "line_control.h"
 
+void FullStop() {
+  MotorStop();
+  updatePath();
+}
+
 void LineControl() {
     on_intersection = OnIntersection() || dir == TURN || dir == DELAY || dir == TARGET;
     
@@ -53,8 +58,7 @@ void LineControl() {
           Delay();
           break;
         case FULL_STOP:
-          MotorStop();
-          updatePath();
+          FullStop();
           break;
         default:
           break;

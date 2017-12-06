@@ -1,5 +1,7 @@
 #include "target_control.h"
 
+int target_count = 1;
+
 void Target() {
 #ifdef DEBUG
         Serial.println("Target");
@@ -8,8 +10,12 @@ void Target() {
       top_corner = true;
       RiseAttach();
       RiseMove(DOWN);
-      delay(200);
+      delay(300);
       RiseDettach();
+      GrabAttach();
+      GrabMove(OPEN);
+      //delay(500);
+      //GrabDettach();
 #ifdef DEBUG
   Serial.println("Claw Down");
 #endif 
@@ -34,7 +40,7 @@ void Target() {
 void TargetPick() {
     MotorStop();
 
-    GrabAttach();
+    //GrabAttach();
     GrabMove(CLOSE);
     delay(1000);
     GrabMove(CLOSE_GRAB);
@@ -45,24 +51,17 @@ void TargetPick() {
     RiseAttach();
     RiseMove(UP);
     delay(1800);
-    RiseDettach();
 #ifdef DEBUG
   Serial.println("Claw Up");
 #endif 
 
-    for(int i = 0; i < 100; i++) {
-      GrabMove(95);
-      delay(10);
-      GrabMove(85);
-      delay(10);
-    }
-#ifdef DEBUG
-  Serial.println("Claw Moving");
-#endif
-    delay(1000);
+    delay(800);
+    
+    RiseDettach();
+    target_count++;
 
     GrabMove(OPEN);
-    delay(800);
+    delay(1000);
     GrabDettach();
 #ifdef DEBUG
   Serial.println("Claw Open");

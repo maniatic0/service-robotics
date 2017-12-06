@@ -41,12 +41,13 @@ void loop() {
     MotorControl();
     UpdateLEDs();
 #ifdef DEBUG
-  /*
+  #ifdef DEBUG_MOTORS
     Serial.print("Left motor:");
     Serial.print(motor_signal[LEFT_MOTOR]);
     Serial.print(" Right motor:");
     Serial.println(motor_signal[RIGHT_MOTOR]);
-    
+  #endif // DEBUG_MOTORS
+  #ifdef DEBUG_LINE_SENSORS
     Serial.print("Line Sensors: ");
     Serial.print(OnLine(LEFT_LEFT_LINE_SENSOR));
     Serial.print(" ");
@@ -56,9 +57,13 @@ void loop() {
     Serial.print(" ");
     Serial.print(OnLine(RIGHT_RIGHT_LINE_SENSOR));
     Serial.println(" "); 
-    */
+  #endif // DEBUG_LINE_SENSORS
+  
+  #ifdef DEBUG_SPEAKERS
+    ReadSpeakers();
     Serial.print("Speaker: ");
     Serial.print(distance[FRONT_SPEAKER]);
-    Serial.println(" cm"); 
-#endif
+    Serial.println(" cm");
+  #endif // DEBUG_SPEAKERS
+#endif // DEBUG
 }

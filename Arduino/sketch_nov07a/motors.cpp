@@ -7,7 +7,7 @@ Servo grab_servo;  // create servo object to control a servo
 int servoPin[] = {7, 8, 9, 10};
 float motor_signal[MOTORS] = {0,0,0,0};
 
-void MotorSetup() {
+void MotorSetup() { 
 	MotorStop();
   RiseAttach();
   RiseMove(UP);
@@ -18,7 +18,7 @@ void MotorSetup() {
 #endif  
   GrabAttach();
   GrabMove(OPEN);
-  delay(800);
+  delay(1000);
   GrabDettach();
 #ifdef DEBUG
   Serial.println("Claw Open");

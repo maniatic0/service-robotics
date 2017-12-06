@@ -13,6 +13,8 @@
 #include "path_control.h"
 #include "target_control.h"
 
+void FullStop();
+
 void LineControl();
 
 #endif
