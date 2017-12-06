@@ -13,16 +13,21 @@ void Target() {
     if (!white_corner) {
       timer.after(100, WaitToLower);
       white_corner = true;
+      top_corner = false;
+      black_corner = false;
     }
-    if(white_corner && top_corner && distance[FRONT_SPEAKER] <= int(CLOSE_DISTANCE) + CLAWS) {
+    if(white_corner && top_corner && !black_corner && distance[FRONT_SPEAKER] <= int(CLOSE_DISTANCE) + CLAWS) {
+      black_corner = true;
+      MotorStop();
       RiseAttach();
       RiseMove(DOWN);
-      delay(200);
+      delay(300);
       RiseDettach();
       GrabAttach();
       GrabMove(OPEN);
+      MotorStart();
 #ifdef DEBUG
-  Serial.println("Claw Down");
+  Serial.println("Claw Down and Open");
 #endif 
     }    
     ReadSpeakers();
@@ -37,6 +42,7 @@ void Target() {
         TargetPick();
         top_corner = false;
         white_corner = false;
+        black_corner = false;
         exiting_intersection = true;
         entering_intersection = false;
         updatePath();
