@@ -11,7 +11,9 @@
 #include "path.h"
 #include "path_control.h"
 
-#define CLOSE_DISTANCE 30.0
+#define CLOSE_DISTANCE 13.0
+
+void WaitToLower();
 
 void Target();
 

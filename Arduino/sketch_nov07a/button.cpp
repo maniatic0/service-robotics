@@ -30,18 +30,7 @@ bool Button(){
     last_button_state = current_button_state;
     return button_state;
 }
-/*
-bool Clicker(){
-    return digitalRead(CLICKER_PIN)==HIGH;
-}
-
-bool Stopper(){
-    return digitalRead(STOPPER_PIN)==HIGH;
-}
-*/
 
 void ButtonClickerSetup(){
   pinMode(BUTTON_PIN, INPUT);
-  //pinMode(CLICKER_PIN, INPUT);
-  //pinMode(STOPPER_PIN, INPUT);
 }
